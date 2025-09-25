@@ -1,0 +1,67 @@
+:root {
+  --color-p1: 0, 255, 255;
+  --color-p2: 255, 0, 191;
+  --color-bg: 25, 25, 35;
+  --color-grid: rgba(0, 255, 255, 0.2);
+}
+.grainy-background {
+  position: relative;
+  overflow: hidden;
+}
+.grainy-background::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOCIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjbnoaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==');
+  animation: grain 8s steps(10) infinite;
+  pointer-events: none;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
+.neon-button {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 5px rgba(var(--color-p1), 0.5), 0 0 10px rgba(var(--color-p1), 0.3);
+}
+.neon-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(var(--color-p1), 0.8), 0 0 20px rgba(var(--color-p1), 0.6);
+}
+.neon-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 3px rgba(var(--color-p1), 0.5), 0 0 5px rgba(var(--color-p1), 0.3);
+}
+.player1-glow {
+    box-shadow: 0 0 15px theme('colors.player-one');
+}
+.player2-glow {
+    box-shadow: 0 0 15px theme('colors.player-two');
+}
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+    background-color: var(--color-grid);
+    border: 1px solid var(--color-grid);
+    box-shadow: 0 0 20px var(--color-grid);
+}
+.cell-bg {
+    background-color: rgb(var(--color-bg));
+    transition: background-color 0.3s ease;
+}
+.cell-bg:hover {
+    background-color: rgba(var(--color-p1), 0.1);
+}
